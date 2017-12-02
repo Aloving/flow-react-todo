@@ -5,32 +5,33 @@ import {
   DELETE_TODO,
   EDIT_TODO,
   TOGGLE_TODO,
-} from '../actions';
+  GET_TODOS
+} from '../../actions';
 
 
-import type { Todo, Todos } from '../types/todo';
+import type { Todo, Todos } from '../../types/todo';
 
 type Action = Todo & {
+  todos?: Todos,
+  todo: Todo,
   type: string
 };
 
-function reducer(state: Todos = [], {type, id, title}: Action) {
+function reducer(state: Todos = [], {type, id, title, todos, todo}: Action) {
   switch(type) {
     case ADD_TODO:
-      const todo: Todo = {
-        id: state[state.length - 1].id + 1,
-        title,
-        completed: false
-      };
       return [...state, todo];
+
+    case GET_TODOS:
+      return todos;
 
     case DELETE_TODO:
       return state.filter((item) => item.id !== id);
 
     case EDIT_TODO:
       return state.map((item) => {
-        if(item.id === id) {
-          item.title = title;
+        if(item.id === todo.id) {
+          return todo;
         }
 
         return item;

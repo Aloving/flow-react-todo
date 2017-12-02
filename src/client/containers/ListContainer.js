@@ -2,35 +2,26 @@
 
 import { connect } from 'react-redux';
 
-import { EDIT_TODO, DELETE_TODO, TOGGLE_TODO } from '../actions';
+import { editTodo, toggleTodo, deleteTodo } from '../actions';
 import List from '../components/List';
 
 
 import type { iEditTodo } from '../types/todo';
 import type { State } from '../types';
-import type { Dispatch } from 'redux';
+import type { Dispatch } from '../types';
 
 function mapStateToProps(state: State) {
   return {
-    todos: state.todos
+    todos: state.todos.items,
+    fetching: state.todos.fetching
   };
 }
 
 function mapDispatchToProps(dispatch: Dispatch): iEditTodo {
   return {
-    onDelete: id => dispatch({
-      type: DELETE_TODO,
-      id
-    }),
-    onToggle: id => dispatch({
-      type: TOGGLE_TODO,
-      id
-    }),
-    onEdit: (id, title) => dispatch({
-      type: EDIT_TODO,
-      id,
-      title,
-    })
+    onDelete: id => dispatch(deleteTodo(id)),
+    onToggle: id => dispatch(toggleTodo(id)),
+    onEdit: (id, title) => dispatch(editTodo(id, title))
   }
 };
 

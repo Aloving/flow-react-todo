@@ -2,12 +2,13 @@
 
 import type { Todos } from './todo';
 
+export type TodosState = {
+  fetching: boolean,
+  items: Todos
+}
+
 export type State = {
-  todos: Todos
+  todos: TodosState
 };
 
-declare type ElementEventTemplate<E> = {
-  target: E
-} & Event;
-
-declare type InputEvent = ElementEventTemplate<HTMLInputElement>;
+export type { Dispatch } from 'redux';

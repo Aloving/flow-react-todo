@@ -2,8 +2,20 @@
   "name": "todo",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "concurrently \"node index.js\" \"node scripts/client/start.js\"",
+    "build": "node scripts/client/build.js",
+    "test": "node scripts/client/test.js --env=jsdom",
+    "flow": "flow"
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3030/"
+    }
+  },
   "dependencies": {
     "autoprefixer": "7.1.2",
+    "axios": "^0.17.1",
     "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
@@ -42,6 +54,7 @@
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.5.9",
@@ -49,12 +62,6 @@
     "webpack-dev-server": "2.8.2",
     "webpack-manifest-plugin": "1.2.1",
     "whatwg-fetch": "2.0.3"
-  },
-  "scripts": {
-    "start": "node scripts/client/start.js",
-    "build": "node scripts/client/build.js",
-    "test": "node scripts/client/test.js --env=jsdom",
-    "flow": "flow"
   },
   "jest": {
     "collectCoverageFrom": [

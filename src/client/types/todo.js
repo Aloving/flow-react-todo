@@ -18,6 +18,8 @@ export type TodosState = {
   +todos: Todos
 };
 
+export type fetching = boolean;
+
 export interface iAddTodo {
   onAdd(title: Title): Dispatch
 };

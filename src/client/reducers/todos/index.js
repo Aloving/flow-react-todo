@@ -2,10 +2,12 @@
 
 import { combineReducers } from 'redux';
 
-import todos from './todos';
+import items from './items';
+import fetching from './fetching';
 
 const reducer = combineReducers({
-  todos
+  items,
+  fetching,
 });
 
 export default reducer;

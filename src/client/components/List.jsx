@@ -3,15 +3,17 @@
 import React from 'react';
 
 import Todo from './Todo';
-import type { Todos, iEditTodo } from '../types/todo';
+import type { Todos, iEditTodo, fetching } from '../types/todo';
 
 type Props = {
-  todos: Todos
+  todos: Todos,
+  fetching: fetching
 }
 
-function List({todos, onToggle, onDelete, onEdit}: Props & iEditTodo): React$Element<any> {
+function List({todos, fetching, onToggle, onDelete, onEdit}: Props & iEditTodo): React$Element<any> {
   return (
     <section className="todo-list">
+      {fetching && <h1> LOADING </h1> }
       { todos.length && todos.map(({id, title, completed}) =>
         <Todo
           key={id}
