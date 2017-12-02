@@ -1,8 +1,6 @@
 const Koa = require('koa');
-const Router = require('koa-router');
 
 const app = new Koa();
-const router = new Router();
 
 const views = require('koa-views');
 const json = require('koa-json');
@@ -13,6 +11,7 @@ const logger = require('koa-logger');
 const debug = require('debug');
 const path = require('path');
 const config = require('../../config/server');
+const router = require('./routes');
 
 const port = process.env.PORT || config.port;
 const root = `${__dirname}/../../`;
@@ -43,11 +42,6 @@ app.use(async (ctx, next) => {
   await next();
   const ms = new Date() - start;
   console.log(`${ctx.method} ${ctx.url} - ${ms}`);
-});
-
-// render index page
-router.get('/', async (ctx, next) => {
-  await ctx.render('index');
 });
 
 app.on('error', async (err, ctx) => {
