@@ -5,7 +5,8 @@ import {
   DELETE_TODO,
   EDIT_TODO,
   TOGGLE_TODO,
-  GET_TODOS
+  GET_TODOS,
+  SET_TODOS,
 } from '../../actions';
 
 
@@ -22,7 +23,7 @@ function reducer(state: Todos = [], {type, id, title, todos, todo}: Action) {
     case ADD_TODO:
       return [...state, todo];
 
-    case GET_TODOS:
+    case SET_TODOS:
       return todos;
 
     case DELETE_TODO:

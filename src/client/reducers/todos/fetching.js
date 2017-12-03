@@ -6,7 +6,12 @@ import {
   ADD_TODO,
   DELETE_TODO,
   EDIT_TODO,
+  REQUEST_ADD,
   TOGGLE_TODO,
+  SET_TODOS,
+  REQUEST_DELETE,
+  REQUEST_TOGGLE,
+  REQUEST_EDIT
 } from '../../actions';
 
 import type { fetching } from '../../types/todo';
@@ -18,7 +23,25 @@ type Action = {
 function reducer(state: fetching = false, action: Action) {
   switch(action.type) {
     case GET_TODOS:
-      return false;
+      return true;
+
+    case REQUEST_ADD:
+      return true;
+
+    case REQUEST_TODOS:
+      return true;
+
+    case REQUEST_DELETE:
+      return true;
+
+    case REQUEST_TOGGLE:
+      return true;
+
+    case REQUEST_EDIT:
+      return true;
+
+    case SET_TODOS:
+      return false
 
     case ADD_TODO:
       return false;
@@ -31,9 +54,6 @@ function reducer(state: fetching = false, action: Action) {
 
     case TOGGLE_TODO:
       return false;
-
-    case REQUEST_TODOS:
-      return true;
 
     default:
       return state;

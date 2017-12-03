@@ -2,7 +2,7 @@
 
 import { connect } from 'react-redux';
 
-import { addTodo } from '../actions';
+import { REQUEST_ADD } from '../actions';
 import Form from '../components/Form';
 
 import type { iAddTodo, Title } from '../types/todo';
@@ -17,7 +17,10 @@ function mapStateToProps(state: State) {
 
 function mapDispatchToProps(dispatch: Dispatch): iAddTodo {
   return {
-    onAdd: (title: Title) => dispatch(addTodo(title))
+    onAdd: (title: Title) => dispatch({
+      type: REQUEST_ADD,
+      title
+    })
   }
 };
 

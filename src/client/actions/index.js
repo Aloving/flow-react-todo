@@ -6,10 +6,10 @@ export {
   DELETE_TODO,
   TOGGLE_TODO,
   GET_TODOS,
+  SET_TODOS,
+  REQUEST_ADD,
   REQUEST_TODOS,
-  getTodos,
-  addTodo,
-  deleteTodo,
-  editTodo,
-  toggleTodo
+  REQUEST_DELETE,
+  REQUEST_TOGGLE,
+  REQUEST_EDIT
 } from './todo';

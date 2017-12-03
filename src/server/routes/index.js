@@ -70,16 +70,17 @@ router.post('/api/delTodo', async (ctx) => {
 router.post('/api/editTodo', async (ctx) => {
   const { id, title } = ctx.request.body;
   todos = todos.map((item) => {
-    if (item.id === id) {
+    if (item.id === +id) {
       const sItem = item;
       sItem.title = title;
       return sItem;
     }
     return item;
   });
-  const currentTodo = todos.find(item => item.id === id);
+  const currentTodo = todos.find(item => item.id === +id);
 
   await promisifyTimeout(() => {
+    console.log(currentTodo);
     ctx.body = currentTodo;
   }, 500);
 });

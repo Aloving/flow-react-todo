@@ -2,7 +2,7 @@
 
 import { connect } from 'react-redux';
 
-import { editTodo, toggleTodo, deleteTodo } from '../actions';
+import { REQUEST_EDIT, REQUEST_TOGGLE, REQUEST_DELETE } from '../actions';
 import List from '../components/List';
 
 
@@ -19,9 +19,19 @@ function mapStateToProps(state: State) {
 
 function mapDispatchToProps(dispatch: Dispatch): iEditTodo {
   return {
-    onDelete: id => dispatch(deleteTodo(id)),
-    onToggle: id => dispatch(toggleTodo(id)),
-    onEdit: (id, title) => dispatch(editTodo(id, title))
+    onDelete: id => dispatch({
+      type: REQUEST_DELETE,
+      id
+    }),
+    onToggle: id => dispatch({
+      type: REQUEST_TOGGLE,
+      id
+    }),
+    onEdit: (id, title) => dispatch({
+      type: REQUEST_EDIT,
+      title,
+      id
+    })
   }
 };
 
